@@ -13,6 +13,7 @@ func main() {
 	mux.HandleFunc("/produk", produkHandler)
 
 	log.Println("server berjalan di port 9000")
+	fmt.Println("tes ajah")
 	
 	err := http.ListenAndServe(":9000",mux)
 	log.Fatal(err)
