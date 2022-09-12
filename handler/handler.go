@@ -2,6 +2,8 @@ package handler
 
 import (
 	"fmt"
+	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -12,7 +14,19 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("<h1>tes aja</h1>"))
+	templ, err := template.ParseFiles("views/home.html")
+	if err != nil{
+		log.Println("error for programmer: " , err)
+		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
+		return
+	}
+	err = templ.Execute(w,nil)
+	if err != nil{
+		log.Println("error for programmer: " , err)
+		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
+		return
+	}
+	// w.Write([]byte("<h1>tes aja</h1>"))
 }
 
 func ProdukHandler(w http.ResponseWriter, r *http.Request) {
