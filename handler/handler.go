@@ -20,7 +20,15 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
 		return
 	}
-	err = templ.Execute(w,nil)
+
+	//data
+	data := map[string]string{
+		"title" : "ini judul konten di home",
+		"content": "ini konten di halaman home",
+	}
+
+
+	err = templ.Execute(w,data)
 	if err != nil{
 		log.Println("error for programmer: " , err)
 		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
