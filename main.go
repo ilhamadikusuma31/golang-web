@@ -11,6 +11,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/",handler.HomeHandler)
 	mux.HandleFunc("/produk", handler.ProdukHandler)
+	mux.HandleFunc("/post-get", handler.PostGet)
 
 
 	fileServer := http.FileServer(http.Dir("assets"))

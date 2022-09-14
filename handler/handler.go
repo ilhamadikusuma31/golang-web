@@ -72,3 +72,16 @@ func ProdukHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func PostGet(w http.ResponseWriter, r *http.Request){
+	method := r.Method
+
+	switch method {
+	case "GET":
+		w.Write([]byte("ini adalah method GET"))
+	case "POST":
+		w.Write([]byte("ini adalah method POST"))
+	default:
+		http.Error(w, "error boskuh gada method yg sesuai", http.StatusBadRequest)
+	}
+}
