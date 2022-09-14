@@ -1,13 +1,11 @@
 {{ template "layout" . }}
-{{define "main"}}
-<h1>{{.content}}</h1>
+{{ define "main" }}
 <div class="card" style="width: 18rem;">
     <img src="https://picsum.photos/100/100" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title">nama produk</h5>
-        <h5 class="card-title">id: {{ .content }}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+        <h5 class="card-title">id: {{ .ID }}</h5>
+        <h5 class="card-title">nama produk: {{ .Nama }}</h5>
+        <h5 class="card-title">harga: {{ .Harga }}</h5>
         <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
 </div>
