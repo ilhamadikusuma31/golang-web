@@ -58,7 +58,12 @@ func ProdukHandler(w http.ResponseWriter, r *http.Request) {
 	// 	"content": id,
 	// }
 
-	data := entity.Produk{ID: 1, Nama: "iphone x", Harga: 12000000}
+	//data := entity.Produk{ID: 1, Nama: "iphone x", Harga: 12000000}
+	data := []entity.Produk{
+		{ID: 1, Nama: "iphone x", Harga: 12000000},
+		{ID: 2, Nama: "samsung galaxy j12", Harga: 1200000},
+		{ID: 3, Nama: "esia hidayah", Harga: 15000},
+		{ID: 3, Nama: "nokia 3310", Harga: 200000}}
 
 	err = templ.Execute(w, data)
 	if err != nil {
