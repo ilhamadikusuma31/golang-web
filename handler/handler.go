@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -14,7 +13,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	templ, err := template.ParseFiles("views/home.html")
+	templ, err := template.ParseFiles("views/home.html","views/layout.html")
 	if err != nil{
 		log.Println("error for programmer: " , err)
 		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
@@ -46,5 +45,24 @@ func ProdukHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 	}
 
-	fmt.Fprintf(w, "Produk dengan id %d", id)
+	// fmt.Fprintf(w, "Produk dengan id %d", id)
+
+	templ, err := template.ParseFiles("views/produk.html","views/layout.html")
+	if err != nil{
+		log.Println("error for programmer: " , err)
+		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
+		return
+	}
+	data := map[string]interface{}{
+		"title" : "ini judul konten di home",
+		"content": id,
+	}
+
+
+	err = templ.Execute(w,data)
+	if err != nil{
+		log.Println("error for programmer: " , err)
+		http.Error(w,"Maaf halaman tidak ditemukan", http.StatusInternalServerError )
+		return
+	}
 }
