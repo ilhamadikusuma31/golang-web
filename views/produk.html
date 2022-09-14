@@ -2,20 +2,25 @@
 {{ define "main" }}
 <div class="container">
     <div class="row justify-content-center">
-    {{ range . }}
-    <div class="card mx-auto" style="width: 18rem;">
-        <img src="https://picsum.photos/100/100" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">id: {{ .ID }}</h5>
-            <h5 class="card-title">nama produk: {{ .Nama }}</h5>
-            <h5 class="card-title">harga: {{ .Harga }}</h5>
-            <!--greather than-->
-            {{if gt .Harga 1000000}}
-            <a href="#" class="btn btn-danger">wow mahal banget</a>
-            {{end}}
+        {{ range . }}
+        <div class="card mx-auto" style="width: 18rem;">
+            <img src="https://picsum.photos/100/100" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">id: {{ .ID }}</h5>
+                <h5 class="card-title">nama produk: {{ .Nama }}</h5>
+                <h5 class="card-title">harga: {{ .Harga }}</h5>
+                <!--greather than-->
+                {{if gt .Harga 1000000}}
+                <a href="#" class="btn btn-danger">wow mahal banget</a>
+                {{end}}
+                <!--greather than-->
+                {{if lt .Harga 1000000}}
+                <a href="#" class="btn btn-success">wow murah banget</a>
+                {{end}}
+                <a href="#" class="btn btn-danger">{{ .CekMahalGa }}</a>
+            </div>
         </div>
-    </div>
-    {{end}}
+        {{end}}
     </div>
 </div>
 {{ end }}
