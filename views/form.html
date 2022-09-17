@@ -1,0 +1,16 @@
+{{ template "layout" . }}
+{{ define "main" }}
+<div class="container justify-content-center">
+    <form action="/proses" method="post">
+        <div class="mb-3">
+            <label for="exampleInputNama" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="exampleInputNama" name="nama">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPesan" class="form-label">Pesan</label>
+            <input type="text" class="form-control" id="exampleInputPesan" name="pesan">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{{ end }}
