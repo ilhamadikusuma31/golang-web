@@ -106,15 +106,55 @@ func Proses(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
 			return
 		}
-		// nama := r.Form.Get("nama")
-		//data := entity.GetData()
-		//data := []entity.Penampung{
-		//
-		//
-		//entity.WriteData(data)
 		return
 	}
 
+}
+
+func TambahPembeli(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		templ, err := template.ParseFiles("views/tambah-pembeli.html", "views/layout.html")
+		if err != nil {
+			log.Println("error for programme: ", err)
+			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
+			return
+		}
+		templ.Execute(w, nil)
+
+	} else if r.Method == "POST" {
+		err := r.ParseForm()
+		if err != nil {
+			log.Println("error for programmer: ", err)
+			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
+			return
+		}
+
+		newData := entity.Data{
+			Nama: r.Form.Get("nama"),
+			Umur: r.Form.Get("umur"),
+		}
+
+		log.Println(r.Form.Get("nama"))
+
+		var p entity.Pembeli = entity.GetData()
+		log.Println("before")
+		for i, l := range p.Data {
+			log.Println("key :", i, " value:", l)
+		}
+		log.Println("after")
+		updatedData := append(p.Data, &newData)
+		p.Data = updatedData
+		for i, l := range p.Data {
+			log.Println("key :", i, " value:", l)
+		}
+		log.Println(updatedData)
+		//p.Data = updatedData
+		//log.Println(pembeli)
+		//log.Println("pembeli: ", pembeli)
+		entity.WriteData(p)
+
+		return
+	}
 }
 
 func Pembeli(w http.ResponseWriter, r *http.Request) {
@@ -126,7 +166,7 @@ func Pembeli(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
 			return
 		}
-		log.Println(pembeli)
 		templ.Execute(w, pembeli.Data)
+
 	}
 }

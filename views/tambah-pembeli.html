@@ -1,0 +1,21 @@
+{{ template "layout" . }}
+{{ define "main" }}
+<div class="container justify-content-center">
+  <form action="/tambah-pembeli" method="post">
+    <div class="mb-3">
+      <label for="exampleInputNama" class="form-label">Nama</label>
+      <input type="text" class="form-control" id="exampleInputNama" name="nama">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputUmur" class="form-label">Umur</label>
+      <input type="text" class="form-control" id="exampleInputUmur" name="umur">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div class="row justify-content-center">
+    <div class="col">
+      <a href="/pembeli" class="btn btn-secondary">back</a>
+    </div>
+  </div>
+</div>
+{{ end }}

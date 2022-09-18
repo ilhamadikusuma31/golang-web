@@ -1,17 +1,1 @@
-{
-	"name_entity":"pembeli",
-	"data":[
-		{
-			"nama" : "ilham adikusuma",
-			"umur"  : "22"
-		},
-		{
-			"nama" : "ilham adikusuma",
-			"umur"  : "22"
-		},
-		{
-			"nama" : "ilham adikusuma",
-			"umur"  : "22"
-		}
-	]
-}
+{"Name_Entity":"pembeli","Data":[{"Nama":"ilham adikusuma","Umur":"22"},{"Nama":"ilham adikusuma","Umur":"22"},{"Nama":"ilham adikusuma","Umur":"22"},{"Nama":"powqeowqe","Umur":"123"},{"Nama":"qwerty","Umur":"123123"},{"Nama":"asd","Umur":"234"}]}
