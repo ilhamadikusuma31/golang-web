@@ -2,7 +2,6 @@ package handler
 
 import (
 	"golang-web/entity"
-	filehandling "golang-web/file-handling"
 	"html/template"
 	"log"
 	"net/http"
@@ -66,8 +65,7 @@ func ProdukHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
-func PostGet(w http.ResponseWriter, r *http.Request){
+func PostGet(w http.ResponseWriter, r *http.Request) {
 	method := r.Method
 
 	switch method {
@@ -80,8 +78,8 @@ func PostGet(w http.ResponseWriter, r *http.Request){
 	}
 }
 
-func Form(w http.ResponseWriter, r *http.Request)  {
-	if r.Method == "GET"{
+func Form(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
 		templ, err := template.ParseFiles("views/form.html", "views/layout.html")
 		if err != nil {
 			log.Println("error for programme: ", err)
@@ -100,33 +98,35 @@ func Form(w http.ResponseWriter, r *http.Request)  {
 	http.Error(w, "error bos", http.StatusInternalServerError)
 }
 
-
-func Proses(w http.ResponseWriter, r *http.Request){
-	if r.Method == "POST"{
+func Proses(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
 		err := r.ParseForm()
-		if err != nil{
+		if err != nil {
 			log.Println("error for programmer: ", err)
 			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
 			return
 		}
-		nama := r.Form.Get("nama")
-		w.Write([]byte(nama))
+		// nama := r.Form.Get("nama")
+		//data := entity.GetData()
+		//data := []entity.Penampung{
+		//
+		//
+		//entity.WriteData(data)
 		return
 	}
 
 }
 
-
-func Pembeli(w http.ResponseWriter, r *http.Request)  {
-	if r.Method == "GET"{
-		data := filehandling.GetData()
-		templ, err  := template.ParseFiles("views/pembeli.html", "views/layout.html")
-		if err != nil{
+func Pembeli(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		pembeli := entity.GetData()
+		templ, err := template.ParseFiles("views/pembeli.html", "views/layout.html")
+		if err != nil {
 			log.Println("error for programme: ", err)
 			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
 			return
 		}
-
-		templ.Execute(w,data.Data)
+		log.Println(pembeli)
+		templ.Execute(w, pembeli.Data)
 	}
 }
