@@ -2,6 +2,7 @@ package handler
 
 import (
 	"golang-web/entity"
+	filehandling "golang-web/file-handling"
 	"html/template"
 	"log"
 	"net/http"
@@ -113,4 +114,19 @@ func Proses(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
+}
+
+
+func Pembeli(w http.ResponseWriter, r *http.Request)  {
+	if r.Method == "GET"{
+		data := filehandling.GetData()
+		templ, err  := template.ParseFiles("views/pembeli.html", "views/layout.html")
+		if err != nil{
+			log.Println("error for programme: ", err)
+			http.Error(w, "Maaf halaman tidak ditemukan", http.StatusInternalServerError)
+			return
+		}
+
+		templ.Execute(w,data.Data)
+	}
 }
